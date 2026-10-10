@@ -1,0 +1,6 @@
+{
+  "name": "Wing Watchers — Woosong University Birdwatching Club",
+  "description": "A calm, modern student birdwatching community at Woosong University in Daejeon. Explore nature, observe birds, and connect.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

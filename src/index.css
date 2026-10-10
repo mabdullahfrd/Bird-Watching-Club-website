@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', 'Newsreader', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #262E21;
+    background-color: #F8F5EE;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Custom logo-matched color classes */
+.bg-cream-canvas {
+  background-color: #F8F5EE;
+}
+
+.bg-cream-surface {
+  background-color: #F2EFE6;
+}
+
+.bg-olive-deep {
+  background-color: #2D3924;
+}
+
+.bg-olive-card {
+  background-color: #3B4B30;
+}
+
+.bg-olive-primary {
+  background-color: #526242;
+}
+
+.bg-sand-sun {
+  background-color: #E6DECB;
+}
+
+.bg-taupe-accent {
+  background-color: #A89F88;
+}
+
+.text-olive-deep {
+  color: #26331E;
+}
+
+.text-olive-primary {
+  color: #526242;
+}
+
+.text-taupe-accent {
+  color: #8C826C;
+}
+
+.border-subtle {
+  border-color: rgba(82, 98, 66, 0.12);
+}
+
+.border-subtle-dark {
+  border-color: rgba(230, 222, 203, 0.15);
+}
