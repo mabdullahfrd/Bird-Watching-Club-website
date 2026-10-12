@@ -20,25 +20,25 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenAudio }) => {
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3.5">
               <div className="shrink-0">
-                <ClubLogo size={44} />
+                <ClubLogo size={48} rounded="xl" />
               </div>
               <div>
                 <h3 className="text-2xl font-editorial font-medium text-white tracking-wider leading-none">
                   WING WATCHERS
                 </h3>
                 <span className="font-mono text-[9px] tracking-widest text-[#D4C79B] uppercase">
-                  WOOSONG UNIV · 탐조 동아리
+                  {lang === 'en' ? 'INT’L STUDENT-LED BIRD CLUB' : '외국인 유학생 주도 탐조 동아리'}
                 </span>
               </div>
             </div>
             <p className="text-xs sm:text-sm text-[#C9C2AE] font-light max-w-sm leading-relaxed">
               {lang === 'en'
-                ? 'A student birdwatching community at Woosong University in Daejeon. Stepping outside, observing wildlife, and cultivating quiet connection.'
-                : '우송대학교 학우들을 위한 평화로운 탐조 커뮤니티. 잠시 걸음을 멈추고 대전의 자연과 새를 관찰하며 따뜻하게 연결됩니다.'}
+                ? 'An international student-led birdwatching community at Woosong University in Daejeon. English-friendly walks, free shared binoculars, and exploring Korea’s wildlife together.'
+                : '우송대학교 외국인 유학생들이 직접 이끄는 글로벌 탐조 커뮤니티. 영어 진행 산책, 무료 쌍안경 대여, 그리고 대전의 자연 속에서 맺는 국경 없는 우정.'}
             </p>
             <div className="text-xs font-mono text-[#8C826C] space-y-0.5">
               <div>Woosong University (우송대학교) · Daejeon, Republic of Korea</div>
-              <div>Emblem: Migratory Bird in Dynamic Flight · Peace Olive Branch</div>
+              <div>Official Club Emblem · Run by International Students</div>
             </div>
           </div>
 
@@ -71,6 +71,11 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenAudio }) => {
               <li>
                 <a href="#activities" className="hover:text-white transition-colors">
                   {lang === 'en' ? 'Club Activities' : '정기 활동'}
+                </a>
+              </li>
+              <li>
+                <a href="#game" className="hover:text-white transition-colors">
+                  {lang === 'en' ? 'Guess the Bird Game' : '새 맞히기 게임'}
                 </a>
               </li>
               <li>

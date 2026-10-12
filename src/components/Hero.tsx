@@ -43,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenJoin, onOpenAudio }) => 
             <div className="inline-flex items-center gap-2.5 mb-6 sm:mb-8 px-3.5 py-1.5 rounded-full bg-[#FAF8F3]/15 border border-[#E6DECB]/25 backdrop-blur-md">
               <ClubLogo size={22} />
               <span className="text-xs sm:text-sm font-mono tracking-[0.2em] uppercase text-[#E6DECB]">
-                {lang === 'en' ? 'WOOSONG UNIVERSITY · DAEJEON' : '우송대학교 · 대전'}
+                {lang === 'en' ? 'WOOSONG UNIVERSITY · RUN BY INTERNATIONAL STUDENTS' : '우송대학교 · 외국인 유학생 주도 동아리'}
               </span>
             </div>
 
@@ -63,8 +63,8 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenJoin, onOpenAudio }) => 
             {/* Supporting statement */}
             <p className="max-w-xl text-base sm:text-lg md:text-xl text-[#E1DEC4] font-light leading-relaxed mb-8 sm:mb-10 text-balance">
               {lang === 'en'
-                ? 'A student birdwatching club for curious people, quiet moments, and the nature around us.'
-                : '바쁜 대학 생활 속 작은 쉼표. 호기심 어린 눈으로 대전의 자연과 새를 바라보며 함께 걸어가는 우송대학교 탐조 동아리.'}
+                ? 'An international student-led nature & birdwatching club. Founded by global students in Daejeon to slow down, explore Korea’s wildlife, and build a welcoming community.'
+                : '우송대 외국인 유학생들이 직접 이끄는 글로벌 탐조 동아리. 세계 각국의 친구들과 함께 대전의 사계절을 걷고, 언어의 장벽 없이 한국의 자연을 발견합니다.'}
             </p>
 
             {/* Action buttons with aligned heights */}
@@ -96,30 +96,31 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenJoin, onOpenAudio }) => 
 
           {/* Right Column: High-End Emblem Showcase Card */}
           <div className="hidden lg:flex lg:col-span-5 xl:col-span-4 justify-center">
-            <div className="relative p-8 rounded-3xl bg-[#FAF8F3]/95 text-[#2D3924] shadow-2xl border border-white/60 max-w-sm w-full backdrop-blur-md">
-              <div className="flex justify-center mb-5">
-                <ClubLogo size={130} />
+            <div className="relative p-7 sm:p-8 rounded-3xl bg-[#FAF8F3]/95 text-[#2D3924] shadow-2xl border border-white/70 max-w-sm w-full backdrop-blur-md">
+              <div className="flex flex-col items-center mb-5">
+                <ClubLogo size={164} rounded="2xl" />
               </div>
 
-              <div className="text-center space-y-2 pt-4 border-t border-[#8C826C]/20">
-                <span className="font-mono text-[10px] tracking-[0.25em] text-[#8C826C] uppercase block">
-                  OFFICIAL CLUB EMBLEM
+              <div className="text-center space-y-2 pt-3 border-t border-[#8C826C]/20">
+                <span className="font-mono text-[10px] tracking-[0.28em] text-[#8C826C] uppercase block font-semibold">
+                  RUN BY INTERNATIONAL STUDENTS
                 </span>
                 <h3 className="font-editorial text-2xl font-bold tracking-wider text-[#2D3924]">
                   WING WATCHERS
                 </h3>
-                <p className="text-xs font-mono tracking-widest text-[#526242] uppercase">
-                  WOOSONG UNIVERSITY · EST. 2024
+                <p className="text-xs font-mono tracking-widest text-[#526242] uppercase font-medium">
+                  WOOSONG UNIVERSITY · GLOBAL NATURE CLUB
                 </p>
-                <div className="pt-2 text-xs text-[#6B6350] font-light italic leading-relaxed">
+
+                <div className="text-xs text-[#6B6350] font-light leading-relaxed px-2">
                   {lang === 'en'
-                    ? '“Explore. Observe. Capture. Share. Connect.”'
-                    : '“탐험하고 관찰하며 마주하는 자연의 순간들”'}
+                    ? '“Run by international students for everyone in Daejeon. English-friendly outings, shared binoculars, zero barrier to entry.”'
+                    : '“외국인 유학생들이 이끄는 글로벌 탐조 모임. 영어 진행, 쌍안경 무료 대여, 언어와 전공의 장벽 없는 열린 커뮤니티.”'}
                 </div>
 
-                <div className="pt-4 mt-2 border-t border-[#8C826C]/15 flex items-center justify-center gap-2 text-[11px] font-mono text-[#526242]">
-                  <Music2 className="w-3.5 h-3.5" />
-                  <span>Daejeon Birding Community</span>
+                <div className="pt-3 mt-1 border-t border-[#8C826C]/15 flex items-center justify-center gap-2 text-[11px] font-mono text-[#526242]">
+                  <Music2 className="w-3.5 h-3.5 text-[#526242]" />
+                  <span>Global Student Community · Daejeon</span>
                 </div>
               </div>
             </div>
@@ -136,6 +137,14 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenJoin, onOpenAudio }) => 
               ? 'No previous birding knowledge or specialist equipment required. Curiosity is enough.'
               : '사전 지식이나 비싼 장비는 필요 없습니다. 호기심과 자연을 존중하는 마음만 가져오세요.'}
           </span>
+          <span className="text-[#8C826C] hidden md:inline">|</span>
+          <a
+            href="#game"
+            className="hidden md:inline-flex items-center gap-1.5 text-[#E6DECB] hover:text-white transition-colors underline decoration-[#E6DECB]/40"
+          >
+            <span>🎮</span>
+            <span>{lang === 'en' ? 'Try the "Guess the Bird" Game' : '새 맞히기 퀴즈 게임 해보기'}</span>
+          </a>
         </div>
 
         <div className="flex items-center gap-3 text-[11px] font-mono tracking-wider text-[#B8AF98]">

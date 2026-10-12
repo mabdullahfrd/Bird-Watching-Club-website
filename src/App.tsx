@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Introduction } from './components/Introduction';
@@ -9,6 +9,7 @@ import { ExploreDaejeon } from './components/ExploreDaejeon';
 import { BirdingJournal } from './components/BirdingJournal';
 import { SeasonalCalendar } from './components/SeasonalCalendar';
 import { ActivitiesGrid } from './components/ActivitiesGrid';
+import { GuessTheBirdGame } from './components/GuessTheBirdGame';
 import { GallerySection } from './components/GallerySection';
 import { MemberExperience } from './components/MemberExperience';
 import { CareForNature } from './components/CareForNature';
@@ -17,16 +18,49 @@ import { EventsSection } from './components/EventsSection';
 import { JoinSection } from './components/JoinSection';
 import { Footer } from './components/Footer';
 import { AudioPlayerDrawer } from './components/AudioPlayerDrawer';
+import { GuessTheBirdPage } from './pages/GuessTheBirdPage';
+import { LogoProvider } from './context/LogoContext';
 
-export default function App() {
+function MainAppContent() {
   const [lang, setLang] = useState<'en' | 'kr'>('en');
   const [isAudioDrawerOpen, setIsAudioDrawerOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'game'>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      return hash === '#game' || hash === '#game-page' ? 'game' : 'home';
+    }
+    return 'home';
+  });
+
+  // Sync hash routing
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#game' || hash === '#game-page') {
+        setCurrentPage('game');
+      } else if (!hash || hash === '#' || hash === '#home') {
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const handleToggleLang = () => {
     setLang((prev) => (prev === 'en' ? 'kr' : 'en'));
   };
 
   const handleScrollToJoin = () => {
+    if (currentPage === 'game') {
+      setCurrentPage('home');
+      window.location.hash = '';
+      setTimeout(() => {
+        const el = document.getElementById('join');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
     const el = document.getElementById('join');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -37,6 +71,49 @@ export default function App() {
     setIsAudioDrawerOpen(true);
   };
 
+  const handleOpenGame = () => {
+    setCurrentPage('game');
+    window.location.hash = '#game';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToHome = () => {
+    setCurrentPage('home');
+    window.location.hash = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavigateToEvents = () => {
+    setCurrentPage('home');
+    window.location.hash = '';
+    setTimeout(() => {
+      const el = document.getElementById('events');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
+  // If on dedicated game page
+  if (currentPage === 'game') {
+    return (
+      <div className="min-h-screen bg-[#F6F4ED] text-[#242E1F]">
+        <GuessTheBirdPage
+          lang={lang}
+          onToggleLang={handleToggleLang}
+          onBackToHome={handleBackToHome}
+          onNavigateToEvents={handleNavigateToEvents}
+        />
+
+        {/* Ambient Sound Drawer */}
+        <AudioPlayerDrawer
+          lang={lang}
+          isOpen={isAudioDrawerOpen}
+          onClose={() => setIsAudioDrawerOpen(false)}
+        />
+      </div>
+    );
+  }
+
+  // Home Page View
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F3] text-[#242E1F]">
       {/* 3-Zone Sticky Navigation Bar */}
@@ -45,6 +122,7 @@ export default function App() {
         onToggleLang={handleToggleLang}
         onOpenJoin={handleScrollToJoin}
         onOpenAudio={handleOpenAudio}
+        onOpenGame={handleOpenGame}
       />
 
       <main className="flex-grow">
@@ -76,28 +154,31 @@ export default function App() {
         {/* 07. Seasonal Rhythm Calendar: Spring, Summer, Autumn, Winter */}
         <SeasonalCalendar lang={lang} />
 
-        {/* 08. Activities Grid: 7 Community-First Activities */}
-        <ActivitiesGrid lang={lang} />
+        {/* 08. Activities Grid: 12 Community-First Activities */}
+        <ActivitiesGrid lang={lang} onOpenGame={handleOpenGame} />
 
-        {/* 09. Photography Gallery with Lightbox Viewer */}
-        <GallerySection lang={lang} />
-
-        {/* 10. Member Experience: Made for Every Major. Beginners Included. */}
-        <MemberExperience lang={lang} />
-
-        {/* 11. Care for Nature: Observe Without Disturbing */}
-        <CareForNature lang={lang} />
-
-        {/* 12. Continuity & Community: Leave Something for the Next Group */}
-        <ContinuityCommunity lang={lang} />
-
-        {/* 13. Upcoming Walks / Events with Instant RSVP */}
-        <EventsSection
+        {/* 09. Interactive Game: Guess the Bird Challenge (Embedded + Dedicated Page Launcher) */}
+        <GuessTheBirdGame
           lang={lang}
-          onSelectEventToRegister={() => handleScrollToJoin()}
+          onOpenDedicatedPage={handleOpenGame}
         />
 
-        {/* 14. Join Section: Your Next Walk Starts Here */}
+        {/* 10. Photography Gallery with Lightbox Viewer */}
+        <GallerySection lang={lang} />
+
+        {/* 11. Member Experience: Made for Every Major. Beginners Included. */}
+        <MemberExperience lang={lang} />
+
+        {/* 12. Care for Nature: Observe Without Disturbing */}
+        <CareForNature lang={lang} />
+
+        {/* 13. Continuity & Community: Leave Something for the Next Group */}
+        <ContinuityCommunity lang={lang} />
+
+        {/* 14. Upcoming Walks & Outings with Event Sign-Up Form */}
+        <EventsSection lang={lang} />
+
+        {/* 15. Join Section: Your Next Walk Starts Here */}
         <JoinSection lang={lang} />
       </main>
 
@@ -111,5 +192,13 @@ export default function App() {
         onClose={() => setIsAudioDrawerOpen(false)}
       />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LogoProvider>
+      <MainAppContent />
+    </LogoProvider>
   );
 }

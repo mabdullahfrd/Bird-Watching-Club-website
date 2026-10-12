@@ -16,7 +16,10 @@ export const JoinSection: React.FC<JoinSectionProps> = ({ lang }) => {
     studentId: '',
     email: '',
     major: '',
-    origin: 'Korean' as 'Korean' | 'International',
+    origin: 'International Student' as string,
+    country: '',
+    preferredLanguage: 'English',
+    dietary: 'No restriction',
     experience: 'Complete beginner',
     reason: '',
   });
@@ -79,8 +82,8 @@ export const JoinSection: React.FC<JoinSectionProps> = ({ lang }) => {
 
             <p className="text-sm text-[#D2C9B3] font-light leading-relaxed">
               {lang === 'en'
-                ? 'Join our friendly group of Woosong students. We coordinate walks on campus and around Daejeon, share binoculars, and give students a peaceful pause from academic pressure.'
-                : '우송대학교 학우들과 함께 걷고, 쌍안경을 나누며, 학업의 스트레스에서 벗어나 대전의 자연 속에서 편안한 휴식을 누려보세요.'}
+                ? 'Founded and run by international students at Woosong University. We coordinate English-friendly walks on campus and around Daejeon, share free club binoculars, and welcome students from all 70+ nations alongside local Korean friends.'
+                : '우송대학교 외국인 유학생들이 직접 설립하고 이끌어가는 탐조 동아리입니다. 영어 중심의 편안한 산책, 공용 쌍안경 나눔, 그리고 70여 개국 유학생들과 한국인 학우들이 함께 어울릴 수 있는 다정한 쉼터를 만듭니다.'}
             </p>
 
             {/* Quick buttons */}
@@ -189,9 +192,12 @@ export const JoinSection: React.FC<JoinSectionProps> = ({ lang }) => {
                     <h3 className="text-2xl sm:text-3xl font-editorial font-medium text-[#242E1F]">
                       Welcome to Wing Watchers
                     </h3>
+                    <span className="text-[11px] font-mono text-[#586C4E] block mt-0.5">
+                      Run by International Students · Woosong Global Nature Club
+                    </span>
                   </div>
                   <div className="shrink-0">
-                    <ClubLogo size={52} />
+                    <ClubLogo size={58} rounded="xl" />
                   </div>
                 </div>
 
@@ -210,8 +216,10 @@ export const JoinSection: React.FC<JoinSectionProps> = ({ lang }) => {
                       <strong className="text-sm text-[#242E1F]">{formData.major || 'Woosong University'}</strong>
                     </div>
                     <div>
-                      <span className="text-[#7C7461] block">EXPERIENCE</span>
-                      <strong className="text-sm text-[#242E1F]">{formData.experience}</strong>
+                      <span className="text-[#7C7461] block">STATUS & ORIGIN</span>
+                      <strong className="text-sm text-[#242E1F]">
+                        {formData.country ? `${formData.country} • ` : ''}{formData.origin}
+                      </strong>
                     </div>
                   </div>
 
@@ -312,34 +320,81 @@ export const JoinSection: React.FC<JoinSectionProps> = ({ lang }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-mono uppercase text-[#D2C9B3] mb-1">
-                        Korean or International?
+                        Student Status
                       </label>
                       <select
                         value={formData.origin}
-                        onChange={(e) => setFormData({ ...formData, origin: e.target.value as 'Korean' | 'International' })}
+                        onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
                         className="w-full px-4 py-2.5 rounded-xl bg-[#2D3924] border border-white/15 text-white focus:outline-none focus:border-[#E6DECB] text-xs sm:text-sm"
                       >
-                        <option value="Korean">Korean Student (한국인 학생)</option>
-                        <option value="International">International Student (외국인 유학생)</option>
+                        <option value="International Student">International Degree Student (외국인 유학생)</option>
+                        <option value="Exchange / Visiting Student">Exchange / Visiting Student (교환학생)</option>
+                        <option value="Korean Student">Korean Student (한국인 학생)</option>
                       </select>
                     </div>
 
                     <div>
                       <label className="block text-xs font-mono uppercase text-[#D2C9B3] mb-1">
-                        Experience Level
+                        Nationality / Home Country
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Uzbekistan, France, Indonesia, Korea..."
+                        value={formData.country}
+                        onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E6DECB] text-xs sm:text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-mono uppercase text-[#D2C9B3] mb-1">
+                        Preferred Language
                       </label>
                       <select
-                        value={formData.experience}
-                        onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                        value={formData.preferredLanguage}
+                        onChange={(e) => setFormData({ ...formData, preferredLanguage: e.target.value })}
                         className="w-full px-4 py-2.5 rounded-xl bg-[#2D3924] border border-white/15 text-white focus:outline-none focus:border-[#E6DECB] text-xs sm:text-sm"
                       >
-                        <option value="Complete beginner">Complete beginner (완전 초보)</option>
-                        <option value="Some experience">Some experience (약간의 경험)</option>
-                        <option value="Experienced birder">Experienced birder (탐조 경험자)</option>
-                        <option value="Photographer">Photographer (사진 촬영 관심)</option>
-                        <option value="Just curious">Just curious (그저 호기심으로)</option>
+                        <option value="English">English (Primary Walk Language)</option>
+                        <option value="Korean">한국어 (Korean)</option>
+                        <option value="Both">Both (English & Korean)</option>
                       </select>
                     </div>
+
+                    <div>
+                      <label className="block text-xs font-mono uppercase text-[#D2C9B3] mb-1">
+                        Post-Walk Meal Preference
+                      </label>
+                      <select
+                        value={formData.dietary}
+                        onChange={(e) => setFormData({ ...formData, dietary: e.target.value })}
+                        className="w-full px-4 py-2.5 rounded-xl bg-[#2D3924] border border-white/15 text-white focus:outline-none focus:border-[#E6DECB] text-xs sm:text-sm"
+                      >
+                        <option value="No restriction">No restriction (일반)</option>
+                        <option value="Halal Friendly">Halal Friendly (할랄)</option>
+                        <option value="Vegetarian / Vegan">Vegetarian / Vegan (채식)</option>
+                        <option value="Other">Other / Food Allergies</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-[#D2C9B3] mb-1">
+                      Experience Level
+                    </label>
+                    <select
+                      value={formData.experience}
+                      onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#2D3924] border border-white/15 text-white focus:outline-none focus:border-[#E6DECB] text-xs sm:text-sm"
+                    >
+                      <option value="Complete beginner">Complete beginner (Never held binoculars before)</option>
+                      <option value="Some experience">Some experience (Enjoys outdoor walking)</option>
+                      <option value="Photographer">Photographer (Interested in wildlife/landscape shots)</option>
+                      <option value="Experienced birder">Experienced birder (Familiar with species)</option>
+                      <option value="Just curious">Just curious (Looking for quiet nature and international friends)</option>
+                    </select>
                   </div>
 
                   <div>

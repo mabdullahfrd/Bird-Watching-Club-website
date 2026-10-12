@@ -1,5 +1,6 @@
 import React from 'react';
 import { clubImages } from '../data/clubData';
+import { ClubLogo } from './ClubLogo';
 
 interface IntroductionProps {
   lang: 'en' | 'kr';
@@ -99,6 +100,50 @@ export const Introduction: React.FC<IntroductionProps> = ({ lang }) => {
                     ? 'Morning light over Daedong Stream, just minutes from the university campus.'
                     : '우송대 캠퍼스에서 불과 몇 분 거리, 대동천의 잔잔한 아침 빛.'}
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Official Identity Tribute Card */}
+        <div className="mt-14 sm:mt-16 p-8 sm:p-10 rounded-3xl bg-[#FAF8F3] border border-[#8C826C]/25 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-4 lg:col-span-3 flex flex-col items-center justify-center">
+              <ClubLogo size={130} rounded="2xl" />
+            </div>
+            <div className="md:col-span-8 lg:col-span-9 space-y-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-mono text-[11px] tracking-widest text-[#526242] uppercase font-semibold">
+                  {lang === 'en' ? 'FOUNDED & RUN BY INTERNATIONAL STUDENTS' : '외국인 유학생들이 직접 만든 글로벌 모임'}
+                </span>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-[#EFE9DC] text-[#7C7461]">
+                  SOLBRIDGE & WOOSONG
+                </span>
+              </div>
+              <h3 className="font-editorial text-2xl font-medium text-[#242E1F]">
+                {lang === 'en'
+                  ? 'A Warm, Global Bridge to Korea’s Living Nature'
+                  : '외국인 유학생과 한국인 학우를 잇는 따뜻한 생태 커뮤니티'}
+              </h3>
+              <p className="text-sm text-[#524B3B] font-light leading-relaxed">
+                {lang === 'en'
+                  ? 'Living abroad in Korea can often feel confined to dorms, lectures, and screens. Wing Watchers was founded and is led by international students at Woosong University to help foreign students explore Daejeon safely, connect with local wildlife, and build deep friendships with Korean peers in an English-friendly, low-pressure setting.'
+                  : '한국 유학 생활 중 기숙사와 강의실에만 머무르기 쉬운 외국인 유학생들을 위해, 솔브릿지와 우송대 유학생들이 직접 뜻을 모아 창립했습니다. 영어 중심의 편안한 진행과 한국인 학우들과의 따뜻한 교류를 통해 대전의 자연을 함께 탐험합니다.'}
+              </p>
+              
+              <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono text-[#526242]">
+                <div className="p-3 rounded-xl bg-white border border-[#E0DBCF]">
+                  <span className="block font-bold text-[#20301E]">🌍 100% English-Friendly</span>
+                  <span className="text-[11px] text-[#697A6D]">No Korean proficiency needed to join and enjoy</span>
+                </div>
+                <div className="p-3 rounded-xl bg-white border border-[#E0DBCF]">
+                  <span className="block font-bold text-[#20301E]">🤝 International & Local</span>
+                  <span className="text-[11px] text-[#697A6D]">Global students from 30+ nations & Korean friends</span>
+                </div>
+                <div className="p-3 rounded-xl bg-white border border-[#E0DBCF]">
+                  <span className="block font-bold text-[#20301E]">🎒 Free Shared Gear</span>
+                  <span className="text-[11px] text-[#697A6D]">Free club binoculars loaned on every weekend walk</span>
+                </div>
               </div>
             </div>
           </div>

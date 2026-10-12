@@ -25,10 +25,10 @@ export const WhyWingWatchers: React.FC<WhyWingWatchersProps> = ({ lang }) => {
     },
     {
       num: '03',
-      titleEn: 'Meet People',
-      titleKr: '자연스럽게 이어지다',
-      descEn: 'A natural, low-pressure way for Korean and international Woosong students to connect.',
-      descKr: '한국인 학생과 유학생이 언어의 장벽 없이 함께 걷고 자연을 이야기하며 친구가 됩니다.',
+      titleEn: 'Global Community',
+      titleKr: '글로벌 유대 & 친구',
+      descEn: 'Run by international students, bringing together peers from 30+ countries and Korean students for relaxed, English-first nature walks.',
+      descKr: '외국인 유학생들이 직접 이끄는 글로벌 동아리로, 30여 개국 학생들과 한국인 학우들이 편안한 분위기 속에서 대화를 나누며 국경을 초월한 친구가 됩니다.',
       icon: HeartHandshake,
     },
     {

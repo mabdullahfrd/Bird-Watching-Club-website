@@ -127,8 +127,8 @@ export const ContinuityCommunity: React.FC<ContinuityCommunityProps> = ({ lang }
             </h3>
             <p className="text-sm sm:text-base text-[#595241] font-light">
               {lang === 'en'
-                ? 'Any active member can take on seasonal responsibilities. Each role is designed to be joyful, clear, and easily handed over.'
-                : '한 사람에게 부담이 쏠리지 않도록 학기별로 역할을 유연하게 분담하며, 선배 기수가 후배 기수에게 자연스럽게 노하우를 인계합니다.'}
+                ? 'Because international students join and graduate across different academic terms, our leadership structure is built for seamless handover between global cohorts and Korean student liaisons.'
+                : '외국인 유학생과 교환학생들이 학기별로 입학하고 졸업하는 캠퍼스 특성에 맞추어, 글로벌 기수와 한국인 학우 간의 유연하고 체계적인 인계 시스템을 운영합니다.'}
             </p>
           </div>
 
