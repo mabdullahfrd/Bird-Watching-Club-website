@@ -1,13 +1,18 @@
 import officialClubLogo from '../assets/images/wingwatchers_official_logo_1791614837114.jpg';
+import heroBirdImg from '../assets/images/hero_cinematic_bird_1790579429363.jpg';
+import campusTrailImg from '../assets/images/campus_nature_intro_1790579445021.jpg';
+import riverHeronImg from '../assets/images/daejeon_river_birds_1790579456395.jpg';
+import magpieImg from '../assets/images/field_note_magpie_1790579468402.jpg';
+import studentWalkImg from '../assets/images/student_walk_nature_1790579481170.jpg';
 
 // Images for the Wing Watchers project
 export const clubImages = {
   clubLogo: officialClubLogo,
-  heroBird: '/src/assets/images/hero_cinematic_bird_1790579429363.jpg',
-  campusTrail: '/src/assets/images/campus_nature_intro_1790579445021.jpg',
-  riverHeron: '/src/assets/images/daejeon_river_birds_1790579456395.jpg',
-  magpie: '/src/assets/images/field_note_magpie_1790579468402.jpg',
-  studentWalk: '/src/assets/images/student_walk_nature_1790579481170.jpg',
+  heroBird: heroBirdImg,
+  campusTrail: campusTrailImg,
+  riverHeron: riverHeronImg,
+  magpie: magpieImg,
+  studentWalk: studentWalkImg,
 };
 
 export interface FieldNote {
